@@ -29,10 +29,11 @@ angular.module('myApp.controllers', [])
         $scope.resetEvent = function(){
             $scope.event = {
                 title: null,
-                details: 'test',
-                types: ['a','b'],
+                details: null,
+                time :null,
+                place: null,
                 type_selected: null,
-                lala :'baba'
+                types: ['Show','Movie']
             };
         };
         $scope.resetEvent();

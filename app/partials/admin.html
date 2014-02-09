@@ -5,12 +5,19 @@ Hello {{user.name}}!
   <input placeholder="Title.." ng-model="event.title">
   <input placeholder="Details.." ng-model="event.details">
   <select ng-model="event.type_selected" ng-options="type for type in event.types"><option value="">Choose Event Type..</option></select>
+    <br/>
+  <input placeholder="Place.." ng-model="event.place" ng-show="event.type_selected=='Show'">
+  <input placeholder="Time.." ng-model="event.time" ng-show="event.type_selected=='Show'">
+
 
   <button type="submit" ng-click="addEvent()">send</button>
 </form>
 
-<ul id="events" ng-show="eventsOnServer">
-    <li ng-repeat="event in eventsOnServer ">{{event.type_selected}}-{{event.title}}: {{event.details}}</li>
-</ul>
-
+<div id="events" ng-show="eventsOnServer">
+    <div ng-repeat="event in eventsOnServer ">
+        <hr>
+        <h3>{{event.title}}</h3>
         <pre>{{event | json}}</pre>
+    </div>
+</div>
+
