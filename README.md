@@ -1,64 +1,151 @@
-# Firebase & AngularJS Starter Pack
 
-> [Firebase](https://www.firebase.com) is a scalable realtime backend that lets you build apps fast without managing servers.
+# angular-seed — the seed for AngularFire apps
 
-## Introduction
-This starter pack is for anyone building a web app with Angular and Firebase. Firebase's realtime data store works well with [Angular](http://angularjs.org)'s two-way data binding and content rendering. This repository includes example applications that use some of the common patterns and best practices for integrating the two technologies.
+This project is an application skeleton for a typical [AngularFire](http://angularfire.com/) web app.
+This library allows you to quickly bootstrap real-time apps using [Firebase](http://www.firebase.com) and [AngularJS](http://www.angularjs.org).
 
-We recommend taking the tutorial on both [Firebase](https://www.firebase.com/tutorial/) and [AngularJS](http://docs.angularjs.org/tutorial) before proceeding.
+The seed contains AngularJS libraries, test libraries and a bunch of scripts all preconfigured for
+instant web development gratification. Just clone the repo (or download the zip/tarball), start up
+our (or yours) webserver and you are ready to develop and test your application.
 
-There are three key benefits to using Firebase as a backend for your Angular
-app:
+The seed app doesn't do much, just shows how to wire controllers and views together and persist them
+in Firebase. You can check it out by opening app/index.html in your browser (might not work
+file `file://` scheme in certain browsers, see note below).
 
-### No backend code required 
+_Note: While angular, angularFire, and Firebase can be used client-side-only, and it's possible to create
+apps that don't require a backend server at all, we recommend hosting the project files using a local
+webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
+sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
+etc to function properly when an html page is opened via `file://` scheme instead of `http://`._
 
-Since Firebase is a hosted service, your app can use the Firebase JS library to talk to the Firebase servers directly in order to store and retrieve data. In combination with our [flexible security rules](https://www.firebase.com/docs/security-quickstart.html), this means you don't need any backend code at all to write a production ready web app.
 
-### Realtime by default
+## How to use angularFire-seed
 
-Firebase is a realtime data store, which means all data synchronized via the service changes in realtime. When a change occurs on one of your clients, the change propogates to all other clients using your app nearly instantly. This makes Firebase ideal for collaborative web apps where data changes frequently.
+ 1. Clone the angularFire-seed repository
+ 1. Open app/js/config.js and add your Firebase URL
+ 1. Go to your Firebase URL and enable email/password authentication under the Auth tab
+ 1. Start hacking...
 
-### Authentication 
+### Serving pages during development
 
-Firebase provides a [Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) service to add authentication to your app via Facebook, Github, Persona, Twitter, or email / password login. 
+You can pick one of these options:
 
-## Example Projects
+* serve this repository with your webserver
+* install node.js and run `node scripts/web-server.js`
 
-### [Chat](/Chat)
+Then navigate your browser to `http://localhost:<port>/app/index.html` to see the app running in
+your browser.
 
-Realtime chat written with AngularJS + Firebase.
 
-[Live Demo](http://www.angularfire.com)
+### Running the app in production
 
-### [Todo](/Todo)
+Make sure you set up security rules for your Firebase! An example for this
+seed can be found in `config/security-rules.json`
 
-An version of the TodoMVC in AngularJS which has been modifed to use Firebase as a backend. 
+Go to your Forge (open your Firebase URL in the browser) and add your sites domain name under
+Auth -> Authorized Request Origins. This allows simple login to work from your web site as well as localhost.
 
-[Live Demo](http://todomvc.com/labs/architecture-examples/firebase-angular/)
+The rest really depends on how complex is your app and the overall infrastructure of your system, but
+the general rule is that all you need in production are all the files under the `app/` directory.
+Everything else can be omitted.
 
-### [Crowdsourced Fog](/Crowdsourced-fog)
+Angular apps are really just a bunch of static html, css and js files that just need to be hosted
+somewhere, where they can be accessed by browsers.
 
-A crowdsourced weather application for San Francisco fog.
+If your Angular app is talking to the backend server via xhr or other means, you need to figure
+out what is the best way to host the static files to comply with the same origin policy if
+applicable. Usually this is done by hosting the files by the backend server or through
+reverse-proxying the backend server(s) and a webserver(s).
 
-[Live Demo](http://firebase.github.io/crowdsourced-fog/)
 
-### [Ionic-Chatroom](/Ionic-Chatroom)
+### Running unit tests
 
-A basic realtime chatroom application built with the [Ionic](http://ionicframework.com/) frontend framework and Firebase as the backend.
+We recommend using [jasmine](http://pivotal.github.com/jasmine/) and
+[Karma](http://karma-runner.github.io) for your unit tests/specs, but you are free
+to use whatever works for you.
 
-### [angularFire-seed](/angularFire-seed)
+Requires [node.js](http://nodejs.org/), Karma (`sudo npm install -g karma`) and a local
+or remote browser.
 
-An application skeleton for a typical AngularFire web app. This seed allows you to quickly bootstrap realtime apps using Firebase and Angular.
+* start `scripts/test.sh` (on windows: `scripts\test.bat`)
+  * a browser will start and connect to the Karma server (Chrome is default browser, others can be captured by loading the same url as the one in Chrome or by changing the `config/karma.conf.js` file)
+* to run or re-run tests just change any of your source or test javascript files
 
-### [Ionic-seed](/Ionic-seed)
 
-An application skeleton for a typical [Ionic](http://ionicframework.com/) cross-platform (Android, iOS, Web) app. This seed provides a basic Ionic application hierarchy with Firebase and Angular.
+### End to end testing
 
-## Additional Firebase + AngularJS Resources
+Angular ships with a baked-in end-to-end test runner that understands angular, your app and allows
+you to write your tests with jasmine-like BDD syntax.
 
-* [AngularFire.com](http://angularfire.com/)
-* [AngularFire Documentation](http://angularfire.com/documentation.html)
-* [Firebase + Angular Google Group](https://groups.google.com/forum/#!forum/firebase-angular)
-* [Firebase on StackOverflow](http://stackoverflow.com/questions/tagged/firebase)
+Requires a webserver, node.js + `./scripts/web-server.js` or your backend server that hosts the angular static files.
 
-If you have any technical questions or feedback on integrating Firebase with Angular, email [support@firebase.com](mailto:support@firebase.com).
+Check out the
+[end-to-end runner's documentation](http://docs.angularjs.org/guide/dev_guide.e2e-testing) for more
+info.
+
+* create your end-to-end tests in `test/e2e/scenarios.js`
+* serve your project directory with your http/backend server or node.js + `scripts/web-server.js`
+* to run do one of:
+  * open `http://localhost:port/test/e2e/runner.html` in your browser
+  * run the tests from console with [Karma](http://karma-runner.github.io) via
+    `scripts/e2e-test.sh` or `script/e2e-test.bat`
+
+### Receiving updates from upstream
+
+When we upgrade angular-seed's repo with newer angular or testing library code, you can just
+fetch the changes and merge them into your project with git.
+
+## Directory Layout
+
+    app/                --> all of the files to be used in production
+      css/              --> css files
+        app.css         --> default stylesheet
+      img/              --> image files
+      index.html        --> app layout file (the main html template file of the app)
+      index-async.html  --> just like index.html, but loads js files asynchronously
+      js/               --> javascript files
+        app.js          --> application
+        config.js       --> custom angularFire config file
+        controllers.js  --> application controllers
+        directives.js   --> application directives
+        filters.js      --> custom angular filters
+        services.js     --> custom angular services
+      lib/              --> angular and 3rd party javascript libraries
+        angular/        --> the latest angular js libs
+          version.txt       --> version number
+        firebase/
+          angularFire.*.js  --> the angularFire adapter
+      partials/             --> angular view partials (partial html templates)
+        home.html           --> a rudimentary $firebase().$bind() example
+        chat.html           --> a $firebase() sync used as an array, with explicit bindings
+        login.html          --> authentication and registration using $firebaseAuth
+        account.html        --> a secured page (must login to view this)
+
+    config/karma.conf.js        --> config file for running unit tests with Karma
+    config/karma-e2e.conf.js    --> config file for running e2e tests with Karma
+    config/security-rules.json  --> sample security rules for your Firebase
+
+    scripts/            --> handy shell/js/ruby scripts
+      e2e-test.sh       --> runs end-to-end tests with Karma (*nix)
+      e2e-test.bat      --> runs end-to-end tests with Karma (windows)
+      test.bat          --> autotests unit tests with Karma (windows)
+      test.sh           --> autotests unit tests with Karma (*nix)
+      web-server.js     --> simple development webserver based on node.js
+
+    test/               --> test source files and libraries
+      e2e/              -->
+        runner.html     --> end-to-end test runner (open in your browser to run)
+        scenarios.js    --> end-to-end specs
+      lib/
+        angular/                --> angular testing libraries
+          angular-mocks.js      --> mocks that replace certain angular services in tests
+          angular-scenario.js   --> angular's scenario (end-to-end) test runner library
+          version.txt           --> version file
+      unit/                     --> unit level specs/tests
+        *Spec.js                --> specs for a specific module in app/js
+
+## Contact
+
+More information on AngularFire: http://angularfire.com
+More information on Firebase: http://firebase.com
+More information on AngularJS: http://angularjs.org/
