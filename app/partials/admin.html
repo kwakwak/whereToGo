@@ -12,12 +12,11 @@ Hello {{user.name}}!
 
   <button type="submit" ng-click="addEvent()">send</button>
 </form>
+<hr>
+<h3>Events</h3>
+<ul id="events" ng-show="eventsOnServer">
+        <li ng-click="showEvent=1-showEvent" ng-repeat="event in eventsOnServer ">{{event.title}}
+        <pre ng-show="showEvent">{{event | json}}</pre> </li>
+</ul>
 
-<div id="events" ng-show="eventsOnServer">
-    <div ng-repeat="event in eventsOnServer ">
-        <hr>
-        <h3>{{event.title}}</h3>
-        <pre>{{event | json}}</pre>
-    </div>
-</div>
 
