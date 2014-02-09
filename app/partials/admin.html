@@ -1,12 +1,16 @@
+Hello {{user.name}}!
 <h2>Add Event</h2>
 
 <form>
-  <input placeholder="Title..." ng-model="title">
-  <input placeholder="Details..." ng-model="details">
+  <input placeholder="Title.." ng-model="event.title">
+  <input placeholder="Details.." ng-model="event.details">
+  <select ng-model="event.type_selected" ng-options="type for type in event.types"><option value="">Choose Event Type..</option></select>
 
   <button type="submit" ng-click="addEvent()">send</button>
 </form>
 
-<ul id="events" ng-show="events">
-    <li ng-repeat="event in events ">{{event.title}}: {{event.details}}</li>
+<ul id="events" ng-show="eventsOnServer">
+    <li ng-repeat="event in eventsOnServer ">{{event.type_selected}}-{{event.title}}: {{event.details}}</li>
 </ul>
+
+        <pre>{{event | json}}</pre>

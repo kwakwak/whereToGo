@@ -24,17 +24,25 @@ angular.module('myApp.controllers', [])
    }])
 
     .controller('admin', ['$scope', 'syncData', function($scope, syncData) {
-        $scope.title = null;
-        $scope.details = null;
 
-        $scope.events = syncData('events');
+        syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
+        $scope.resetEvent = function(){
+            $scope.event = {
+                title: null,
+                details: 'test',
+                types: ['a','b'],
+                type_selected: null,
+                lala :'baba'
+            };
+        };
+        $scope.resetEvent();
+        $scope.eventsOnServer = syncData('events');
 
         // add new messages to the list
         $scope.addEvent = function() {
-            if( $scope.title ) {
-                $scope.events.$add({title: $scope.title, details: $scope.details});
-                $scope.title = null;
-                $scope.details = null;
+            if( $scope.event.title ) {
+                $scope.eventsOnServer.$add($scope.event);
+                $scope.resetEvent();
             }
         };
     }])
