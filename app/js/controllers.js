@@ -59,6 +59,7 @@ angular.module('myApp.controllers', [])
         };
         $scope.save = function(){
             $scope.event.$save();
+            $scope.resetEvent();
         };
     }])
 
