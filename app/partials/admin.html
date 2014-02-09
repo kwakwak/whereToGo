@@ -7,7 +7,7 @@ Hello {{user.name}}!
   <select ng-model="event.type_selected" ng-options="type for type in event.types"><option value="">Choose Event Type..</option></select>
     <br/>
   <input placeholder="Place.." ng-model="event.place" ng-show="event.type_selected=='Show'">
-  <input placeholder="Time.." ng-model="event.time" ng-show="event.type_selected=='Show'">
+  <input type="date" placeholder="Date.." ng-model="event.date" ng-show="event.type_selected=='Show'">
 
 
   <button type="submit" ng-click="addEvent()">send</button>
@@ -15,8 +15,12 @@ Hello {{user.name}}!
 <hr>
 <h3>Events</h3>
 <ul id="events" ng-show="eventsOnServer">
-        <li ng-click="showEvent=1-showEvent" ng-repeat="event in eventsOnServer ">{{event.title}}
-        <pre ng-show="showEvent">{{event | json}}</pre> </li>
-</ul>
+        <li ng-click="showEvent=1-showEvent" ng-repeat="(id, event) in eventsOnServer "> {{event.title}}
+            <div ng-show="showEvent">
+                {{event | json}}
+                <a href="#/admin" ng-click="editEvent(id,'del')">Delete</a>
+                <a href="#/admin" ng-click="editEvent(id,'edit')">Edit</a>
+</div></li>
 
+</ul>
 

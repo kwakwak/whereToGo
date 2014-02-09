@@ -23,14 +23,15 @@ angular.module('myApp.controllers', [])
       };
    }])
 
-    .controller('admin', ['$scope', 'syncData', function($scope, syncData) {
+    .controller('admin', ['$scope', 'syncData','$log', function($scope, syncData,$log) {
 
         syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
+
         $scope.resetEvent = function(){
             $scope.event = {
                 title: null,
                 details: null,
-                time :null,
+                date :null,
                 place: null,
                 type_selected: null,
                 types: ['Show','Movie']
@@ -46,6 +47,22 @@ angular.module('myApp.controllers', [])
                 $scope.resetEvent();
             }
         };
+        $scope.editEvent =function(id,action){
+          $scope.selectedEvent = syncData('events/'+id);
+            if (action =='del'){
+                $scope.selectedEvent.$remove();
+            } else if (action =='edit'){
+                $scope.event= $scope.selectedEvent;
+
+            }
+        };
+    }])
+
+
+    .controller('EditCtrl', ['$scope', 'syncData','$routeParams','$log', function($scope, syncData,$routeParams,$log) {
+        $scope.project = syncData('events/'+$routeParams.projectId);
+        $log.log($routeParams.projectId);
+        $scope.project.$remove();
     }])
 
    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function($scope, loginService, $location) {
@@ -53,6 +70,7 @@ angular.module('myApp.controllers', [])
       $scope.pass = null;
       $scope.confirm = null;
       $scope.createMode = false;
+
 
       $scope.login = function(cb) {
          $scope.err = null;

@@ -20,6 +20,10 @@ angular.module('myApp.routes', ['ngRoute'])
             templateUrl: 'partials/admin.html',
             controller: 'admin'
         });
+        $routeProvider.when('/edit/:projectId', {
+            controller:'EditCtrl',
+            templateUrl:'partials/edit.html'
+        });
 
       $routeProvider.when('/account', {
          authRequired: true, // must authenticate before viewing this page
