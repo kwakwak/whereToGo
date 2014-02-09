@@ -15,6 +15,12 @@ angular.module('myApp.routes', ['ngRoute'])
          controller: 'ChatCtrl'
       });
 
+        $routeProvider.when('/admin', {
+            authRequired: true,
+            templateUrl: 'partials/admin.html',
+            controller: 'admin'
+        });
+
       $routeProvider.when('/account', {
          authRequired: true, // must authenticate before viewing this page
          templateUrl: 'partials/account.html',

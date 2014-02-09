@@ -1,0 +1,12 @@
+<h2>Add Event</h2>
+
+<form>
+  <input placeholder="Title..." ng-model="title">
+  <input placeholder="Details..." ng-model="details">
+
+  <button type="submit" ng-click="addEvent()">send</button>
+</form>
+
+<ul id="events" ng-show="events">
+    <li ng-repeat="event in events ">{{event.title}}: {{event.details}}</li>
+</ul>

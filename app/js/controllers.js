@@ -23,6 +23,22 @@ angular.module('myApp.controllers', [])
       };
    }])
 
+    .controller('admin', ['$scope', 'syncData', function($scope, syncData) {
+        $scope.title = null;
+        $scope.details = null;
+
+        $scope.events = syncData('events');
+
+        // add new messages to the list
+        $scope.addEvent = function() {
+            if( $scope.title ) {
+                $scope.events.$add({title: $scope.title, details: $scope.details});
+                $scope.title = null;
+                $scope.details = null;
+            }
+        };
+    }])
+
    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function($scope, loginService, $location) {
       $scope.email = null;
       $scope.pass = null;
