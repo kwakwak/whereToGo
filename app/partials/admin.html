@@ -10,7 +10,9 @@ Hello {{user.name}}!
   <input type="date" placeholder="Date.." ng-model="event.date" ng-show="event.type_selected=='Show'">
 
 
-  <button type="submit" ng-click="addEvent()">send</button>
+  <button type="submit" ng-click="addEvent()">Add new</button>
+  <button type="submit" ng-click="resetEvent()">Reset</button>
+  <button type="submit" ng-click="save()" ng-show="showSave">Save Changes</button>
 </form>
 <hr>
 <h3>Events</h3>

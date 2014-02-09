@@ -36,6 +36,7 @@ angular.module('myApp.controllers', [])
                 type_selected: null,
                 types: ['Show','Movie']
             };
+            $scope.showSave = 0;
         };
         $scope.resetEvent();
         $scope.eventsOnServer = syncData('events');
@@ -53,17 +54,14 @@ angular.module('myApp.controllers', [])
                 $scope.selectedEvent.$remove();
             } else if (action =='edit'){
                 $scope.event= $scope.selectedEvent;
-
+                $scope.showSave = 1;
             }
+        };
+        $scope.save = function(){
+            $scope.event.$save();
         };
     }])
 
-
-    .controller('EditCtrl', ['$scope', 'syncData','$routeParams','$log', function($scope, syncData,$routeParams,$log) {
-        $scope.project = syncData('events/'+$routeParams.projectId);
-        $log.log($routeParams.projectId);
-        $scope.project.$remove();
-    }])
 
    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function($scope, loginService, $location) {
       $scope.email = null;
