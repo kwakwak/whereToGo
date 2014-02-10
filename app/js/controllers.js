@@ -15,6 +15,7 @@ angular.module('myApp.controllers', [])
               this.push(key + ': ' + value);
             }, log);
             console.dir (log);
+            $scope.log =log;
           }
 
         });
