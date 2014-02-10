@@ -21,6 +21,11 @@ angular.module('myApp.routes', ['ngRoute'])
             controller: 'admin'
         });
 
+        $routeProvider.when('/:yyyy/:mm/:dd', {
+            controller:'HomeCtrl',
+            templateUrl:'partials/home.html'
+        });
+
 
       $routeProvider.when('/account', {
          authRequired: true, // must authenticate before viewing this page

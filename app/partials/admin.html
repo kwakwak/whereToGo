@@ -7,7 +7,7 @@ Hello {{user.name}}!
   <select ng-model="event.type_selected" ng-options="type for type in event.types" required><option value="">Choose Event Type..</option></select>
     <br/>
   <input placeholder="Place.." ng-model="event.place" ng-show="event.type_selected=='Show'">
-  <input type="date" placeholder="Date.." ng-model="event.date" ng-show="event.type_selected=='Show'">
+    <input type="date" placeholder="Date.." ng-model="event.date" >
 
 
   <button type="submit" ng-click="addEvent()" ng-hide="showSave">Add new</button>

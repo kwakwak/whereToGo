@@ -3,29 +3,16 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-   .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
-        $scope.showPage=false;
-        $scope.currentPage = 0;
-        $scope.pageSize = 1;
-        $scope.eventsOnServer = syncData('events');
+   .controller('HomeCtrl', ['$scope', 'syncData','$routeParams','$log','$location', function($scope, syncData,$routeParams,$log,$location) {
+        $routeParams.eventDate
+        $scope.date = $routeParams.yyyy + "-" + $routeParams.mm + "-" + $routeParams.dd;
+        $log.info ("Showing events for: " + $scope.date);
+        $scope.eventsOnServer = syncData('events').$child($scope.date);
+        console.dir ($scope.eventsOnServer);
 
-         $scope.eventsOnServer.$on('loaded', function(snapshot) {
-          if(snapshot === null) {
-            $log.info('not exist.');
-          } else {
-            var eventsArr = [];
-            angular.forEach(snapshot, function(value, key){
-              this.push(value);
-            }, eventsArr);
-              $scope.eventsArr =eventsArr;
-
-
-            $scope.showPage=true;
-          }
-
-        });
-
-
+        $scope.prevDay = function(){
+            $location.path('/2014/02/10');
+        };
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
       $scope.newMessage = null;
@@ -56,6 +43,7 @@ angular.module('myApp.controllers', [])
                 type_selected: null,
                 types: ['Show','Movie']
             };
+
             $scope.showSave = 0;
         };
         $scope.resetEvent();
@@ -64,7 +52,7 @@ angular.module('myApp.controllers', [])
         // add new messages to the list
         $scope.addEvent = function() {
             if( $scope.event.title ) {
-                $scope.eventsOnServer.$add($scope.event);
+                $scope.eventsOnServer.$child($scope.event.date).$add($scope.event);
                 $scope.resetEvent();
             }
         };
