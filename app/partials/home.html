@@ -1,2 +1,11 @@
+<h1>{{numberOfPages()}}</h1>
+<pre ng-repeat="event in eventsArr | startFrom:currentPage*pageSize | limitTo:pageSize">{{event | json}}</pre>
 
-<pre>{{log | json}}</pre>
+
+<button class="btn primary-btn" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+    Previous
+</button>
+<span class="bg-primary">{{currentPage+1}}/{{eventsArr.length}}</span>
+<button class="btn primary-btn" ng-disabled="currentPage >= eventsArr.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+    Next
+</button>

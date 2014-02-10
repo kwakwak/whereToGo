@@ -4,18 +4,23 @@
 
 angular.module('myApp.controllers', [])
    .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
+        $scope.showPage=false;
+        $scope.currentPage = 0;
+        $scope.pageSize = 1;
         $scope.eventsOnServer = syncData('events');
 
          $scope.eventsOnServer.$on('loaded', function(snapshot) {
           if(snapshot === null) {
-            console.dir('not exist.');
+            $log.info('not exist.');
           } else {
-            var log = [];
+            var eventsArr = [];
             angular.forEach(snapshot, function(value, key){
-              this.push(key + ': ' + value);
-            }, log);
-            console.dir (log);
-            $scope.log =log;
+              this.push(value);
+            }, eventsArr);
+              $scope.eventsArr =eventsArr;
+
+
+            $scope.showPage=true;
           }
 
         });

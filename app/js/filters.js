@@ -9,8 +9,10 @@ angular.module('myApp.filters', [])
       }
    }]).filter('startFrom', function() {
     return function(input, start) {
-        start = +start; //parse to int
-        return input.slice(start);
+        if (typeof (input) != "undefined") {
+            start = +start; //parse to int
+            return input.slice(start);
+        }
     }
     })
    .filter('reverse', function() {
