@@ -3,8 +3,18 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-   .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
-      syncData('syncedValue').$bind($scope, 'syncedValue');
+   .controller('HomeCtrl', ['$scope', 'syncData','firebaseRef', function($scope, syncData, firebaseRef) {
+        $scope.events = syncData('events');
+
+        $scope.numEvents = function(){
+            var log = [];
+            angular.forEach($scope.events, function(value, key){
+                this.push(key + ': ' + typeof (value));
+            }, log);
+            console.dir(log);
+        };
+
+
    }])
 
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
