@@ -3,6 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
+<<<<<<< HEAD
    .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
         $scope.eventsOnServer = syncData('events');
 
@@ -16,6 +17,21 @@ angular.module('myApp.controllers', [])
               this.push(key + ': ' + value);
             }, log);
             console.dir (log);
+=======
+   .controller('HomeCtrl', ['$scope', 'syncData','firebaseRef', function($scope, syncData, firebaseRef) {
+        $scope.events = syncData('events');
+
+        $scope.numEvents = function(){
+            var log = [];
+            angular.forEach($scope.events, function(value, key){
+                this.push(key + ': ' + typeof (value));
+            }, log);
+            console.dir(log);
+        };
+
+
+   }])
+>>>>>>> d8fd907db5dc12390d3c04b9afc9d4e4fff1223a
 
           }
 
