@@ -4,9 +4,25 @@
 
 angular.module('myApp.controllers', [])
    .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
-      syncData('syncedValue').$bind($scope, 'syncedValue');
-   }])
+        $scope.eventsOnServer = syncData('events');
 
+         $scope.eventsOnServer.$on('loaded', function(snapshot) {
+          if(snapshot === null) {
+            console.dir('not exist.');
+          } else {
+
+            var log = [];
+            angular.forEach(snapshot, function(value, key){
+              this.push(key + ': ' + value);
+            }, log);
+            console.dir (log);
+
+          }
+
+        });
+
+
+   }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
       $scope.newMessage = null;
 
