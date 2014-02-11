@@ -26,7 +26,9 @@ angular.module('myApp.controllers', [])
 
             $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; // current date in server format
             $scope.eventsInDate = syncData('events').$child($scope.date);
-        //    $location.path('/'+$scope.yyyy+'/'+$scope.mm+'/'+$scope.dd);
+
+            var eventsLength = $scope.eventsInDate.$getIndex().length;
+            if (eventsLength==0) $location.path('/'); // If there is no events go to root
 
             $scope.lastDate==$scope.date?$scope.hideNext=true:$scope.hideNext=false;
             $scope.firstDate==$scope.date?$scope.hidePrev=true:$scope.hidePrev=false;
