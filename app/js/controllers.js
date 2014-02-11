@@ -4,14 +4,27 @@
 
 angular.module('myApp.controllers', [])
    .controller('HomeCtrl', ['$scope', 'syncData','$routeParams','$log','$location', function($scope, syncData,$routeParams,$log,$location) {
-        $routeParams.eventDate
-        $scope.date = $routeParams.yyyy + "-" + $routeParams.mm + "-" + $routeParams.dd;
+
+        if (typeof($routeParams.dd) == 'undefined'){
+            var today = new Date();
+            $scope.dd = today.getDate();
+            var mm = today.getMonth()+1;
+            $scope.mm = ('0' + mm).toString();
+            $scope.yyyy = today.getFullYear();
+        } else {
+            $scope.dd = $routeParams.dd;
+            $scope.mm = $routeParams.mm;
+            $scope.yyyy = $routeParams.yyyy;
+        }
+
+        $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ;
         $log.info ("Showing events for: " + $scope.date);
         $scope.eventsOnServer = syncData('events').$child($scope.date);
         console.dir ($scope.eventsOnServer);
+        $location.path('/'+$scope.yyyy+'/'+$scope.mm+'/'+$scope.dd+'');
 
         $scope.prevDay = function(){
-            $location.path('/2014/02/10');
+            $location.path('/'+$scope.yyyy+'/'+$scope.mm+'/'+($scope.dd-1)+'');
         };
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {

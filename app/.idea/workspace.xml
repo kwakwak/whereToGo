@@ -26,7 +26,7 @@
       <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="-3.548387" vertical-offset="0" max-vertical-offset="242">
+            <state line="5" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="242">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="39" selection-start="587" selection-end="587" vertical-scroll-proportion="0.33846155" vertical-offset="0" max-vertical-offset="3916">
+            <state line="26" column="73" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.5988166" vertical-offset="66" max-vertical-offset="4202">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="43" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1034">
+            <state line="23" column="43" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0" vertical-offset="506" max-vertical-offset="1034">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
       <file leaf-file-name="admin.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="66" selection-start="478" selection-end="478" vertical-scroll-proportion="-6.387097" vertical-offset="0" max-vertical-offset="726">
+            <state line="9" column="66" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="726">
               <folding />
             </state>
           </provider>
@@ -62,7 +62,7 @@
       <file leaf-file-name="filters.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/filters.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="42" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+            <state line="12" column="42" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="924">
               <folding />
             </state>
           </provider>
@@ -124,10 +124,18 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="web-ide.project.structure" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -136,14 +144,6 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -203,6 +203,27 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="43" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0" vertical-offset="506" max-vertical-offset="1034">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="66" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="42" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="21" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
@@ -212,9 +233,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="2" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1012">
-          <folding />
-        </state>
+        <state line="6" column="2" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1012" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers.js">
@@ -226,37 +245,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="23" selection-start="489" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="748">
-          <folding />
-        </state>
+        <state line="13" column="23" selection-start="489" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="748" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/service.firebase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="129" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="990">
-          <folding />
-        </state>
+        <state line="4" column="13" selection-start="129" selection-end="140" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="990" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="2" selection-start="157" selection-end="157" vertical-scroll-proportion="0.16216215" vertical-offset="0" max-vertical-offset="814">
-          <folding />
-        </state>
+        <state line="6" column="2" selection-start="157" selection-end="157" vertical-scroll-proportion="0.16216215" vertical-offset="0" max-vertical-offset="814" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="23" selection-start="489" selection-end="522" vertical-scroll-proportion="0.33846155" vertical-offset="0" max-vertical-offset="845">
-          <folding />
-        </state>
+        <state line="13" column="23" selection-start="489" selection-end="522" vertical-scroll-proportion="0.33846155" vertical-offset="0" max-vertical-offset="845" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/service.firebase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="129" selection-end="140" vertical-scroll-proportion="0.026035503" vertical-offset="66" max-vertical-offset="990">
-          <folding />
-        </state>
+        <state line="4" column="13" selection-start="129" selection-end="140" vertical-scroll-proportion="0.026035503" vertical-offset="66" max-vertical-offset="990" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/filters.js">
@@ -268,7 +277,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="66" selection-start="478" selection-end="478" vertical-scroll-proportion="-6.387097" vertical-offset="0" max-vertical-offset="726">
+        <state line="9" column="66" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="726">
           <folding />
         </state>
       </provider>
@@ -282,14 +291,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="-3.548387" vertical-offset="0" max-vertical-offset="242">
+        <state line="5" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="242">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="587" selection-end="587" vertical-scroll-proportion="0.33846155" vertical-offset="0" max-vertical-offset="3916">
+        <state line="26" column="73" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.5988166" vertical-offset="66" max-vertical-offset="4202">
           <folding />
         </state>
       </provider>
