@@ -5,38 +5,48 @@
 angular.module('myApp.controllers', [])
    .controller('HomeCtrl', ['$scope', 'syncData','$routeParams','$log','$location', function($scope, syncData,$routeParams,$log,$location) {
 
-        if (typeof($routeParams.dd) == 'undefined'){
-            var today = new Date();
-            $scope.dd =  ('0' + (today.getDate())).slice(-2); //  adding leading zero 
-            $scope.mm = ('0' + (today.getMonth()+1)).slice(-2); 
-            $scope.yyyy = today.getFullYear();
-        } else {
-            $scope.dd = $routeParams.dd;
-            $scope.mm = $routeParams.mm;
-            $scope.yyyy = $routeParams.yyyy;
-        }
 
-        $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; 
-        $scope.eventsInDate = syncData('events').$child($scope.date);
+        $scope.allEvents = syncData('events');
+        $scope.allEvents.$on('loaded', function()
+        {
 
-        $scope.prevDate = new Date(); // set previous date of the currect date
-        $scope.prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
-        $scope.prevDate.setDate($scope.prevDate.getDate()-1);
+            var keys = $scope.allEvents.$getIndex();
+            var firstArr = (keys[0]).split("-");
+            $scope.firstDate = new Date(firstArr[0],firstArr[1]-1,firstArr[2]); // first date in server
+            var lastArr = (keys[keys.length-1]).split("-");
+            $scope.lastDate = new Date(lastArr[0],lastArr[1]-1,lastArr[2]); // last date in server
 
-        var firstDate = new Date(); // set first date of events
-        firstDate.setFullYear('2014','1','9');
+            if (typeof($routeParams.dd) == 'undefined'){
+                var today = new Date();
+                $scope.dd =  ('0' + (today.getDate())).slice(-2); //  adding leading zero
+                $scope.mm = ('0' + (today.getMonth()+1)).slice(-2);
+                $scope.yyyy = today.getFullYear();
+            } else {
+                $scope.dd = $routeParams.dd;
+                $scope.mm = $routeParams.mm;
+                $scope.yyyy = $routeParams.yyyy;
+            }
 
-        if (firstDate>$scope.prevDate){  // hide previous link if first date
-          $scope.hidePrev=true;
-        } else {
-          $scope.hidePrev=false;
-        }
+            $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ;
+            $scope.eventsInDate = syncData('events').$child($scope.date);
 
-        $scope.goToPrevDate = function(){
-            var month = ('0' + ($scope.prevDate.getMonth()+1)).slice(-2); 
-            var day = ('0' + ($scope.prevDate.getDate())).slice(-2); 
-            $location.path('/'+$scope.prevDate.getFullYear()+'/'+month+'/'+day);
-        };
+            $scope.prevDate = new Date(); // set previous date of the currect date
+            $scope.prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
+            $scope.prevDate.setDate($scope.prevDate.getDate()-1);
+
+            if ($scope.firstDate>$scope.prevDate){  // hide previous link if first date
+              $scope.hidePrev=true;
+            } else {
+              $scope.hidePrev=false;
+            }
+
+            $scope.goToPrevDate = function(){
+                var month = ('0' + ($scope.prevDate.getMonth()+1)).slice(-2);
+                var day = ('0' + ($scope.prevDate.getDate())).slice(-2);
+                $location.path('/'+$scope.prevDate.getFullYear()+'/'+month+'/'+day);
+            };
+
+        });
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
       $scope.newMessage = null;
