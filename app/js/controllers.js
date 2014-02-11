@@ -85,8 +85,8 @@ angular.module('myApp.controllers', [])
                 $scope.resetEvent();
             }
         };
-        $scope.editEvent =function(id,action){
-          $scope.selectedEvent = syncData('events/'+id);
+        $scope.editEvent =function(id,action,date){
+          $scope.selectedEvent = syncData('events/'+date+'/'+id);
             if (action =='del'){
                 $scope.selectedEvent.$remove();
             } else if (action =='edit'){

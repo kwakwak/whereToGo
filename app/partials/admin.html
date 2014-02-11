@@ -16,11 +16,15 @@ Hello {{user.name}}!
 <hr>
 <h3>Events</h3>
 <ul id="events" ng-show="eventsOnServer">
-        <li ng-click="showEvent=1-showEvent" ng-repeat="(id, event) in eventsOnServer "> {{event.title}}
-            <div ng-show="showEvent">
-                {{event | json}}
-                <a href="#/admin" ng-click="editEvent(id,'del')">Delete</a>
-                <a href="#/admin" ng-click="editEvent(id,'edit')">Edit</a>
+        <li ng-click="showEvent=1-showEvent" style="cursor: pointer;" ng-repeat-start="(date, events) in eventsOnServer "> {{date}}</li>
+            <div  ng-repeat-end ng-show="showEvent" ng-repeat="(event_id, event) in events ">
+                <b style="color:indianred;">Title</b> {{event.title}}
+                <b style="color:indianred;">Details</b> {{event.details}}
+                <b style="color:indianred;">Type</b> {{event.type_selected}}
+                <b style="color:indianred;">Place</b> {{event.place}}
+                |
+                <b style="cursor: pointer; color:blueviolet;" ng-click="editEvent(event_id,'del',date)">Delete</b> |
+                <b style="cursor: pointer; color:blueviolet;" ng-click="editEvent(event_id,'edit',date)">Edit</b>
 </div></li>
 
 </ul>
