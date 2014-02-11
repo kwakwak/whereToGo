@@ -1,4 +1,7 @@
 
-<pre ng-repeat="event in eventsInDate | orderByPriority">{{event | json}}</pre>
+<div class="row" style="text-align:center; color:white; background-color: black; cursor: pointer;">
+    <div class="col-md-6" ng-click="goTo('prev')"><h2 ng-hide="hidePrev">Previous</h2></div>
+    <div class="col-md-6" ng-click="goTo('next')"><h2 ng-hide="hideNext">Next</h2></div>
+</div>
 
-        <h1 ng-click="goToPrevDate()" ng-hide="hidePrev" >Prev</h1>
+<pre ng-repeat="event in eventsInDate | orderByPriority">{{event | json}}</pre>

@@ -9,43 +9,36 @@ angular.module('myApp.controllers', [])
         $scope.allEvents = syncData('events');
         $scope.allEvents.$on('loaded', function()
         {
-
             var keys = $scope.allEvents.$getIndex();
-            var firstArr = (keys[0]).split("-");
-            $scope.firstDate = new Date(firstArr[0],firstArr[1]-1,firstArr[2]); // first date in server
-            var lastArr = (keys[keys.length-1]).split("-");
-            $scope.lastDate = new Date(lastArr[0],lastArr[1]-1,lastArr[2]); // last date in server
+            $scope.firstDate = keys[0]; // first date in server;
+            $scope.lastDate =  keys[keys.length-1]; // last date in server
 
             if (typeof($routeParams.dd) == 'undefined'){
-                var today = new Date();
-                $scope.dd =  ('0' + (today.getDate())).slice(-2); //  adding leading zero
-                $scope.mm = ('0' + (today.getMonth()+1)).slice(-2);
-                $scope.yyyy = today.getFullYear();
+                $scope.lastDateArr = $scope.lastDate.split("-");
+                $scope.dd =  $scope.lastDateArr[2];
+                $scope.mm = $scope.lastDateArr[1];
+                $scope.yyyy = $scope.lastDateArr[0];
             } else {
                 $scope.dd = $routeParams.dd;
                 $scope.mm = $routeParams.mm;
                 $scope.yyyy = $routeParams.yyyy;
             }
 
-            $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ;
+            $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; // current date in server format
             $scope.eventsInDate = syncData('events').$child($scope.date);
+        //    $location.path('/'+$scope.yyyy+'/'+$scope.mm+'/'+$scope.dd);
 
-            $scope.prevDate = new Date(); // set previous date of the currect date
-            $scope.prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
-            $scope.prevDate.setDate($scope.prevDate.getDate()-1);
+            $scope.lastDate==$scope.date?$scope.hideNext=true:$scope.hideNext=false;
+            $scope.firstDate==$scope.date?$scope.hidePrev=true:$scope.hidePrev=false;
 
-            if ($scope.firstDate>$scope.prevDate){  // hide previous link if first date
-              $scope.hidePrev=true;
-            } else {
-              $scope.hidePrev=false;
-            }
-
-            $scope.goToPrevDate = function(){
-                var month = ('0' + ($scope.prevDate.getMonth()+1)).slice(-2);
-                var day = ('0' + ($scope.prevDate.getDate())).slice(-2);
-                $location.path('/'+$scope.prevDate.getFullYear()+'/'+month+'/'+day);
+            $scope.goTo = function(dir){
+                var dateObject = new Date();
+                dateObject.setFullYear($scope.yyyy,$scope.mm,$scope.dd);
+                var month = ('0' + (dateObject.getMonth())).slice(-2);
+                if (dir=="prev") var day = ('0' + (dateObject.getDate()-1)).slice(-2);
+                if (dir=="next") var day = ('0' + (dateObject.getDate()+1)).slice(-2);
+                $location.path('/'+dateObject.getFullYear()+'/'+month+'/'+day);
             };
-
         });
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
