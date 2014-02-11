@@ -7,8 +7,8 @@ angular.module('myApp.controllers', [])
 
         if (typeof($routeParams.dd) == 'undefined'){
             var today = new Date();
-            $scope.dd = today.getDate();
-            $scope.mm = ('0' + (today.getMonth()+1)).slice(-2); // inc by 1 & adds leading zero
+            $scope.dd =  ('0' + (today.getDate())).slice(-2); //  adding leading zero 
+            $scope.mm = ('0' + (today.getMonth()+1)).slice(-2); 
             $scope.yyyy = today.getFullYear();
         } else {
             $scope.dd = $routeParams.dd;
@@ -16,18 +16,26 @@ angular.module('myApp.controllers', [])
             $scope.yyyy = $routeParams.yyyy;
         }
 
-        $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ;
-        $log.info ("Showing events for: " + $scope.date);
+        $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; 
         $scope.eventsOnServer = syncData('events').$child($scope.date);
-        console.dir ($scope.eventsOnServer);
-        $location.path('/'+$scope.yyyy+'/'+$scope.mm+'/'+$scope.dd+'');
 
-        $scope.prevDay = function(){
-            var prevDate = new Date();
-            prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
-            prevDate.setDate(prevDate.getDate()-1);
-            var fixedMonth = ('0' + (prevDate.getMonth()+1)).slice(-2); // inc by 1 & adds leading zero
-            $location.path('/'+prevDate.getFullYear()+'/'+fixedMonth+'/'+prevDate.getDate());
+        $scope.prevDate = new Date(); // set previous date of the currect date
+        $scope.prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
+        $scope.prevDate.setDate($scope.prevDate.getDate()-1);
+
+        var firstDate = new Date(); // set first date of events
+        firstDate.setFullYear('2014','1','9');
+
+        if (firstDate>$scope.prevDate){  // hide previous link if first date
+          $scope.hidePrev=true;
+        } else {
+          $scope.hidePrev=false;
+        }
+
+        $scope.goToPrevDate = function(){
+            var month = ('0' + ($scope.prevDate.getMonth()+1)).slice(-2); 
+            var day = ('0' + ($scope.prevDate.getDate())).slice(-2); 
+            $location.path('/'+$scope.prevDate.getFullYear()+'/'+month+'/'+day);
         };
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
