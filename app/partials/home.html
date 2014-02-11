@@ -1,7 +1,10 @@
 
-<div class="row" style="text-align:center; color:white; background-color: black; cursor: pointer;">
-    <div class="col-md-6" ng-click="goTo('prev')"><h2 ng-hide="hidePrev">Previous</h2></div>
-    <div class="col-md-6" ng-click="goTo('next')"><h2 ng-hide="hideNext">Next</h2></div>
+<div class="row height100" style="text-align:center; color:white; background-color: black; cursor: pointer;">
+    <div class="col-xs-1" ng-click="goTo('prev')"><h2 ng-hide="hidePrev"><</h2></div>
+    <div class="col-xs-10">
+        <pre  ng-repeat="event in eventsInDate | orderByPriority">{{event | json}}</pre>
+    </div>
+    <div class="col-xs-1  height100" ng-click="goTo('next')"><h2 ng-hide="hideNext">></h2></div>
+
 </div>
 
-<pre ng-repeat="event in eventsInDate | orderByPriority">{{event | json}}</pre>

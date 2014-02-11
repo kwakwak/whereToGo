@@ -1,5 +1,9 @@
 /* app css stylesheet */
 
+.height100{
+   height: 100%;
+}
+
 .hide {
    display: none;
 }
