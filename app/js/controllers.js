@@ -17,7 +17,7 @@ angular.module('myApp.controllers', [])
         }
 
         $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; 
-        $scope.eventsOnServer = syncData('events').$child($scope.date);
+        $scope.eventsInDate = syncData('events').$child($scope.date);
 
         $scope.prevDate = new Date(); // set previous date of the currect date
         $scope.prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
