@@ -8,7 +8,7 @@ angular.module('myApp.controllers', [])
         if (typeof($routeParams.dd) == 'undefined'){
             var today = new Date();
             $scope.dd = today.getDate();
-            $scope.mm = today.getMonth()+1;
+            $scope.mm = ('0' + (today.getMonth()+1)).slice(-2); // inc by 1 & adds leading zero
             $scope.yyyy = today.getFullYear();
         } else {
             $scope.dd = $routeParams.dd;
@@ -26,7 +26,8 @@ angular.module('myApp.controllers', [])
             var prevDate = new Date();
             prevDate.setFullYear($scope.yyyy,($scope.mm-1),$scope.dd);
             prevDate.setDate(prevDate.getDate()-1);
-            $location.path('/'+prevDate.getFullYear()+'/'+(prevDate.getMonth()+1)+'/'+prevDate.getDate());
+            var fixedMonth = ('0' + (prevDate.getMonth()+1)).slice(-2); // inc by 1 & adds leading zero
+            $location.path('/'+prevDate.getFullYear()+'/'+fixedMonth+'/'+prevDate.getDate());
         };
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
