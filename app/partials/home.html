@@ -3,8 +3,8 @@
         <button type="button" class="btn btn-default glyphicon glyphicon glyphicon-chevron-left" ng-disabled="hidePrev" ng-click="goTo('prev')" ></button>
         <button type="button" class="btn btn-default glyphicon glyphicon glyphicon-chevron-right pull-right" ng-disabled="hideNext" ng-click="goTo('next')"></button>
     </div>
-    <p class="title" ng-repeat-start="(date, events) in allEvents "
-       ng-class="{red: red(date)}">{{date}}   </p>
+    <p class="title" ng-repeat-start="(date, events) in allEvents | orderByPriority | reverse"
+       ng-class="{red: red(events.$id)}">{{events.$id }}   </p>
     <p class="event" ng-repeat-end  ng-repeat="(event_id, event) in events ">{{event.title}}</p>
 </div>
 <div id="header">{{date}}</div>
