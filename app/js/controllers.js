@@ -12,12 +12,22 @@ angular.module('myApp.controllers', [])
             $scope.keys = $scope.allEvents.$getIndex();
             $scope.firstDate = $scope.keys[0]; // first date in server;
 
+            $scope.today = function(){
+                var today = new Date();
+                return today.getFullYear() +
+                "-" +
+                ('0' + (today.getMonth()+1)).slice(-2) +
+                "-" +
+                ('0' + (today.getDate())).slice(-2);
+            };
+
+
             $scope.lastKey = $scope.keys.length-1;
             $scope.lastDate =  $scope.keys[$scope.lastKey]; // last date in server
 
             $scope.urlDate = $location.search().date;
             if (typeof($scope.urlDate) == 'undefined'){
-                $scope.date =  $scope.lastDate;
+                $scope.date =  $scope.today();
                 $location.search('date', $scope.date);
             } else {
                 $scope.date = $scope.urlDate;
