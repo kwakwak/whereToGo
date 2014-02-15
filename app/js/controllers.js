@@ -33,6 +33,13 @@ angular.module('myApp.controllers', [])
 
             $scope.reloadDate($scope.date);
 
+            // if cant find a date in array reload to last
+            if ($scope.currentKey=='-1') {
+                $scope.date =  $scope.lastDate;
+                $location.search('date', $scope.date);
+                $scope.reloadDate($scope.date);
+            }
+
             $scope.goTo = function(dir){
                 if (dir=="prev") $scope.currentKey--;
                 else if (dir=="next") $scope.currentKey++;
