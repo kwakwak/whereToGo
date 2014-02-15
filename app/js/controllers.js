@@ -47,6 +47,11 @@ angular.module('myApp.controllers', [])
                 $scope.reloadDate(newDate);
                 $location.search('date', newDate);
             };
+
+            $scope.red = function(element){
+                if (element==$scope.date) return true;
+                else  return false;
+            };
         });
    }])
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {

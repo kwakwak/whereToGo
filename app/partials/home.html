@@ -1,13 +1,18 @@
-<div id="rightPanel" class="pull-right full-height"></div>
+<div id="rightPanel" class="pull-right full-height">
+    <p class="title" ng-repeat-start="(date, events) in allEvents "
+       ng-class="{red: red(date)}">{{date}}   </p>
+    <p class="event" ng-repeat-end  ng-repeat="(event_id, event) in events ">{{event.title}}</p>
+    <div id="control"></div>
+        <button type="button" class="btn btn-warning glyphicon-star" ng-disabled="hidePrev" ng-click="goTo('prev')" ><-</button>
+        <button type="button" class="btn btn-danger " ng-disabled="hideNext" ng-click="goTo('next')">-></button>
+    </div>
+
+</div>
 <div id="header">{{date}}</div>
 
 <div id="main" class="full-height" ng-repeat="event in eventsInDate | orderByPriority | limitTo: 1">
     <h2>{{event.title}}</h2>
     {{event.details}}
 
-    <div id="control"></div>
-    <button type="button" class="btn btn-lg  btn-danger" ng-hide="hideNext" ng-click="goTo('next')">Next</button>
-    <button type="button" class="btn btn-lg  btn-warning" ng-hide="hidePrev" ng-click="goTo('prev')">Previous</button>
-</div>
 
 
