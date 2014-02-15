@@ -1,70 +1,49 @@
-/* app css stylesheet */
-
-.height100{
-   height: 100%;
+*
+{
+    margin:0;
+    padding: 0;
 }
-
-.hide {
-   display: none;
+body,html,div#container
+{
+    width: 100%;
+    height: 100%;
 }
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+.row
+{
+    margin-left:0;
+    margin-right: 0;
 }
-
-.menu:before {
-  content: "[";
+.full-height
+{
+    height: 100%;
 }
-
-.menu:after {
-  content: "]";
+div#container
+{
+    overflow: hidden;
 }
+div#header
+{
+    height: 50px;
+    background-color: #BF3030;
+    border-bottom: 2px solid black;
+    box-shadow: 0px 1px 10px;
 
-.menu > li {
-  display: inline;
+    padding: 3px;
+    padding-left: 20px;
+    font-size: xx-large;
+    color: black;
 }
-
-.menu > li.hide {
-   display: none;
+div#rightPanel
+{
+    width: 200px;
+    background-color: #ECECEC;
+    border-left: 1px solid black;
 }
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-p.status {
-   color: red;
-}
-
-p.status.good, p.good {
-   color: green;
-}
-
-form label {
-   display: block;
-   margin: 15px 0;
-}
-
-form label span {
-   display: block;
-   font-weight: bold;
-}
-
-.error {
-   color: red;
-}
-
-fieldset {
-   float: left;
-   margin-right: 25px;
-   padding: 25px;
+div#main
+{
+    padding: 10px;
+    width: 70%;
+    margin-left: 9.5%;
+    border-right: solid 1px #B3B3B3;
+    border-left: solid 1px #B3B3B3;
 }

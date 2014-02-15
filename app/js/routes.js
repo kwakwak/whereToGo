@@ -7,7 +7,8 @@ angular.module('myApp.routes', ['ngRoute'])
    .config(['$routeProvider', function($routeProvider) {
       $routeProvider.when('/', {
          templateUrl: 'partials/home.html',
-         controller: 'HomeCtrl'
+         controller: 'HomeCtrl',
+         reloadOnSearch: false
       });
 
       $routeProvider.when('/chat', {
@@ -15,17 +16,11 @@ angular.module('myApp.routes', ['ngRoute'])
          controller: 'ChatCtrl'
       });
 
-        $routeProvider.when('/admin', {
+      $routeProvider.when('/admin', {
             authRequired: true,
             templateUrl: 'partials/admin.html',
             controller: 'admin'
-        });
-
-        $routeProvider.when('/:yyyy/:mm/:dd', {
-            controller:'HomeCtrl',
-            templateUrl:'partials/home.html'
-        });
-
+      });
 
       $routeProvider.when('/account', {
          authRequired: true, // must authenticate before viewing this page

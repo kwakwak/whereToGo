@@ -9,37 +9,36 @@ angular.module('myApp.controllers', [])
         $scope.allEvents = syncData('events');
         $scope.allEvents.$on('loaded', function()
         {
-            var keys = $scope.allEvents.$getIndex();
-            $scope.firstDate = keys[0]; // first date in server;
-            $scope.lastDate =  keys[keys.length-1]; // last date in server
+            $scope.keys = $scope.allEvents.$getIndex();
+            $scope.firstDate = $scope.keys[0]; // first date in server;
 
-            if (typeof($routeParams.dd) == 'undefined'){
-                $scope.lastDateArr = $scope.lastDate.split("-");
-                $scope.dd =  $scope.lastDateArr[2];
-                $scope.mm = $scope.lastDateArr[1];
-                $scope.yyyy = $scope.lastDateArr[0];
+            $scope.lastKey = $scope.keys.length-1;
+            $scope.lastDate =  $scope.keys[$scope.lastKey]; // last date in server
+
+            $scope.urlDate = $location.search().date;
+            if (typeof($scope.urlDate) == 'undefined'){
+                $scope.date =  $scope.lastDate;
+                $location.search('date', $scope.date);
             } else {
-                $scope.dd = $routeParams.dd;
-                $scope.mm = $routeParams.mm;
-                $scope.yyyy = $routeParams.yyyy;
+                $scope.date = $scope.urlDate;
             }
 
-            $scope.date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd ; // current date in server format
-            $scope.eventsInDate = syncData('events').$child($scope.date);
+            $scope.reloadDate =function(date){
+                $scope.lastDate==date?$scope.hideNext=true:$scope.hideNext=false;
+                $scope.firstDate==date?$scope.hidePrev=true:$scope.hidePrev=false;
+                $scope.eventsInDate = syncData('events').$child(date);
+                $scope.currentKey = $scope.keys.indexOf(date);
+                $scope.date =  date;
+            };
 
-            var eventsLength = $scope.eventsInDate.$getIndex().length;
-            if (eventsLength==0) $location.path('/'); // If there is no events go to root
-
-            $scope.lastDate==$scope.date?$scope.hideNext=true:$scope.hideNext=false;
-            $scope.firstDate==$scope.date?$scope.hidePrev=true:$scope.hidePrev=false;
+            $scope.reloadDate($scope.date);
 
             $scope.goTo = function(dir){
-                var dateObject = new Date();
-                dateObject.setFullYear($scope.yyyy,$scope.mm,$scope.dd);
-                var month = ('0' + (dateObject.getMonth())).slice(-2);
-                if (dir=="prev") var day = ('0' + (dateObject.getDate()-1)).slice(-2);
-                if (dir=="next") var day = ('0' + (dateObject.getDate()+1)).slice(-2);
-                $location.path('/'+dateObject.getFullYear()+'/'+month+'/'+day);
+                if (dir=="prev") $scope.currentKey--;
+                else if (dir=="next") $scope.currentKey++;
+                var newDate =  $scope.keys[$scope.currentKey];
+                $scope.reloadDate(newDate);
+                $location.search('date', newDate);
             };
         });
    }])
